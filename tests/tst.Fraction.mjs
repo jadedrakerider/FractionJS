@@ -34,11 +34,27 @@ export default function MJStest() {
     const m = new Fraction()
     m.setND(3,2)
 
+    console.log('\nm.SIGN', m.SIGN)
+    console.log('m:', m.toString())
+
     const n = new Fraction()
     n.setND(4,-5)
 
-    console.log(`m * n = ${m.multiplyF(n)}`) // Returning a positive fraction but should be negative.
+    console.log(`\nn.SIGN: ${n.SIGN}`)
+    console.log(`n: ${n.toString()}`)
 
+    const o = m.multiplyF(n);
+
+    console.log(`\no.SIGN: ${o.SIGN}`)
+    console.log(`m * n = o => ${o.toString()}`)
+
+    const p = m.multiplyI(-2)
+    console.log(`\np.SIGN: ${p.SIGN}`)
+    console.log('m * -2 = p =>', p.toString())
+
+    const q = m.divideF(n)
+    console.log(`\nq.SIGN: ${q.SIGN}`)
+    console.log(`m / n = q => ${q.toString()}`)
     
 
 }
