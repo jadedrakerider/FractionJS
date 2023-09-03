@@ -32,26 +32,25 @@ module.exports = class Fraction {
     }
 
     setND( numerator, denominator){
-        if( numerator >= 0 && denominator <= 0 ||
-            numerator <= 0 && denominator >= 0){
-                this.evaluateSign()            
-        }
+        // if( numerator >= 0 && denominator <= 0 ||
+        //     numerator <= 0 && denominator >= 0){
+        //         this.evaluateSign()            
+        // }
 
         // Must be in this order, otherwise will throw DivideByZero Error
         this.setDenominator(denominator)
         this.setNumerator(numerator)
+        this.evaluateSign()
     }
 
     setNumerator( numerator ){
         this.n = numerator;
         this.verify()
-        this.evaluateSign()
     }
 
     setDenominator( denominator ){
         this.d = denominator;
         this.verify();
-        this.evaluateSign();
     }
 
     evaluateSign(){
@@ -96,6 +95,15 @@ module.exports = class Fraction {
         } else {
             return `- ${this.n} / ${this.d}`
         }
+    }
+
+    multiplyF(fraction){
+        let result = new Fraction()
+        const n = this.n * fraction.n;
+        const d = this.d * fraction.d;
+        result.setND( n, d )
+
+        return result;
     }
 
     sign(){
