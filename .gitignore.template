@@ -1,8 +1,3 @@
-
-
-.config
-.git
-/.upm
 /node_modules
 
 
