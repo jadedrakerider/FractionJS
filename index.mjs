@@ -1,6 +1,6 @@
 'use strict';
 
-import * as Fraction from './Fraction.js'
+import Fraction from './Fraction.mjs'
 
 
 
