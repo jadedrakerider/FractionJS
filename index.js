@@ -1,6 +1,14 @@
 'use strict';
 
+const cjsTest = require('./tests/tst.Fraction.cjs')
+const testing = true;
 
-import * as Fraction from './Fraction.js'
+if (testing) {
+    cjsTest()
+}
 
-console.log( 'fraction:', new Fraction() )
+
+
+
+
+
