@@ -1,7 +1,10 @@
 'use strict';
-
-import Fraction from './Fraction.mjs'
-
+import MJStest from "./tests/tst.Fraction.mjs";
 
 
-console.log( 'fraction:', new Fraction().toString() )
+const testing = true;
+
+if (testing) {
+    MJStest()
+}
+
