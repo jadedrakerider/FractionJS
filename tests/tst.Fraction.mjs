@@ -56,5 +56,7 @@ export default function MJStest() {
     console.log(`\nq.SIGN: ${q.SIGN}`)
     console.log(`m / n = q => ${q.toString()}`)
     
-
+    const r = m.divideI(-2)
+    console.log(`\nr.SIGN: ${r.SIGN}`)
+    console.log('m / -2 = r =>', r.toString())
 }

@@ -112,7 +112,17 @@ export default class Fraction {
     }
 
     divideI(integer){
+        
         const result = new Fraction()
+
+        result.n = this.n;
+        result.d = this.d * Math.pow(integer, 2);
+
+        if(integer < 0){
+            result.SIGN.selectKey('negative')
+        }
+
+        return result;
     }
 
     multiplyF(fraction){
