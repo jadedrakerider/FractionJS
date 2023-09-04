@@ -142,9 +142,8 @@ export default class Fraction {
     }
 
     subtractF(fraction){
-        const result = new Fraction()
-
-        result.n = this.n*fraction.d - this.d*fraction.n;
+        fraction = fraction.getAdditiveInverse()
+        return this.addF(fraction)
     }
 
     multiplyF(fraction){
@@ -176,6 +175,10 @@ export default class Fraction {
     divideF(fraction){
         return this.multiplyF(fraction.getInverse())
 
+        /**
+         * @todo
+         *  - Refactored this to simply call multiplyF() with the inverse of the fraction.
+         */
         // const result = new Fraction()
         // result.n = this.n * fraction.d;
         // result.d = this.d * fraction.n;
