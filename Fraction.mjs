@@ -41,11 +41,6 @@ export default class Fraction {
     }
 
     setND( numerator, denominator){
-        // if( numerator >= 0 && denominator <= 0 ||
-        //     numerator <= 0 && denominator >= 0){
-        //         this.evaluateSign()            
-        // }
-
         // Must be in this order, otherwise will throw DivideByZero Error
         this.#setDenominator(denominator)
         this.#setNumerator(numerator)
@@ -124,10 +119,7 @@ export default class Fraction {
     }
 
     addI(integer){
-        /**
-         * @todo 
-        *    - Add support for negative integers
-         */
+
         const result = new Fraction()
         const modifierT = this.sign()
         
@@ -152,16 +144,6 @@ export default class Fraction {
     subtractF(fraction){
         fraction = fraction.getAdditiveInverse()
         return this.addF(fraction)
-    }
-
-    commonDenominator(fraction){
-        /**
-         * @todo
-         * - finish this method
-         * 
-         * @summary 
-         *    commonDenominator() returns a common denominator to be used with fraction addition and subtraction.
-         */
     }
 
     multiplyF(fraction){
@@ -192,21 +174,6 @@ export default class Fraction {
 
     divideF(fraction){
         return this.multiplyF(fraction.getInverse())
-
-        /**
-         * @todo
-         *  - Refactored this to simply call multiplyF() with the inverse of the fraction.
-         */
-        // const result = new Fraction()
-        // result.n = this.n * fraction.d;
-        // result.d = this.d * fraction.n;
-        // if(this.SIGN.positive && fraction.SIGN.negative ||
-        //    this.SIGN.negative && fraction.SIGN.positive){
-        
-        //     result.SIGN.selectKey('negative')
-        // }
-
-        // return result;
     }
 
     divideI(integer){
@@ -252,11 +219,6 @@ export default class Fraction {
         let base = 0;
         
         result.setND(this.n, this.d)
-
-        // const greaterThan = {
-        //     numerator: base > result.getDenominator(), 
-        //     denominator: base > result.getNumerator()
-        // }
         
         for( let i = 1 ; base < result.getDenominator() || base < result.getNumerator() ; i++){
             base = 2**i;
@@ -276,9 +238,3 @@ export default class Fraction {
     }
 
 }
-
-
-    /**
-     * 2^x + 1, 2^x - 1
-     */
-
