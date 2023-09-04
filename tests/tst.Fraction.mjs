@@ -59,4 +59,20 @@ export default function MJStest() {
     const r = m.divideI(-2)
     console.log(`\nr.SIGN: ${r.SIGN}`)
     console.log('m / -2 = r =>', r.toString())
+
+    const s = m.addF(n)
+    console.log(`\ns.SIGN: ${s.SIGN}`)
+    console.log(`m + n = s => ${s.toString()}`)
+
+    const t = m.addI(2)
+    console.log(`\nt.SIGN: ${t.SIGN}`)
+    console.log('m + -2 = t =>', t.toString())
+
+    const u = m.subtractF(n);
+    console.log(`\nu.SIGN: ${u.SIGN}`)
+    console.log('m - 2 = u =>', u.toString())
+
+    const v = m.subtractI(2);
+    console.log(`\nu.SIGN: ${v.SIGN}`)
+    console.log('m - 2 = v =>', v.toString())
 }
