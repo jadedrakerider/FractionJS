@@ -20,6 +20,10 @@ export default class Fraction {
         return result;
     }
 
+    getDenominator(){
+        return this.d;
+    }
+
     getInverse(){
         const result = new Fraction()
 
@@ -30,6 +34,10 @@ export default class Fraction {
 
     getModulus(){
         return this.sign() * (this.n % this.d);
+    }
+
+    getNumerator(){
+        return this.n;
     }
 
     setND( numerator, denominator){
@@ -239,28 +247,34 @@ export default class Fraction {
     }
 
     reduce(){
-        const result = new Fraction()
+        const result = this;
+        const factors = { up: 0, down: 0 }
+        let base = 0;
+        
+        result.setND(this.n, this.d)
 
+        // const greaterThan = {
+        //     numerator: base > result.getDenominator(), 
+        //     denominator: base > result.getNumerator()
+        // }
+        
+        for( let i = 1 ; base < result.getDenominator() || base < result.getNumerator() ; i++){
+            base = 2**i;
+            factors.up = base + 1;
+            factors.down = base - 1;
+
+            if(result.d % factors.up === 0 && result.n % factors.up === 0){
+                result.setND( result.getNumerator()/factors.up, result.getDenominator()/factors.up )
+                i = 1;
+            } else if(result.d % factors.down === 0 && result.n % factors.down === 0){
+                result.setND( result.getNumerator()/factors.down, result.getDenominator()/factors.down )
+                i = 1;
+            }
+        }
 
         return result;
     }
 
-    findCommonFactors( integer ) {
-        const factors = { up: 0, down: 0 }
-        for( let i = 1 ; i <= integer ; i++){
-            const base = 2**i;
-
-            if(base >= integer){ return factors; }
-
-            factors.up = base + 1;
-            factors.down = base - 1;
-
-
-
-        }
-    }
-
-    find
 }
 
 
