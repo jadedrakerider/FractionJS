@@ -146,6 +146,16 @@ export default class Fraction {
         return this.addF(fraction)
     }
 
+    commonDenominator(fraction){
+        /**
+         * @todo
+         * - finish this method
+         * 
+         * @summary 
+         *    commonDenominator() returns a common denominator to be used with fraction addition and subtraction.
+         */
+    }
+
     multiplyF(fraction){
         const result = new Fraction()
         const n = this.n * fraction.n;
@@ -227,4 +237,34 @@ export default class Fraction {
             return true;
         }
     }
+
+    reduce(){
+        const result = new Fraction()
+
+
+        return result;
+    }
+
+    findCommonFactors( integer ) {
+        const factors = { up: 0, down: 0 }
+        for( let i = 1 ; i <= integer ; i++){
+            const base = 2**i;
+
+            if(base >= integer){ return factors; }
+
+            factors.up = base + 1;
+            factors.down = base - 1;
+
+
+
+        }
+    }
+
+    find
 }
+
+
+    /**
+     * 2^x + 1, 2^x - 1
+     */
+
