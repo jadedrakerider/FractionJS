@@ -64,8 +64,11 @@ export default function MJStest() {
     console.log(`\ns.SIGN: ${s.SIGN}`)
     console.log(`m + n = s => ${s.toString()}`)
 
-    const t = m.addI(-2)
-    console.log(`\nm: ${m.toString()}`)
+    const t = m.addI(2)
     console.log(`\nt.SIGN: ${t.SIGN}`)
     console.log('m + -2 = t =>', t.toString())
+
+    const u = m.subtractI(2);
+    console.log(`\nu.SIGN: ${u.SIGN}`)
+    console.log('m - 2 = u =>', u.toString())
 }

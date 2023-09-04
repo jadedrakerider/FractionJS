@@ -103,8 +103,14 @@ export default class Fraction {
         const modifierT = this.sign()
         const modifierF = fraction.sign()
 
-        result.n = modifierT*this.n*fraction.d + modifierF*fraction.n*this.d;
-        result.d = this.d*fraction.d;
+        if(this.d != fraction.d){
+            result.n = modifierT*this.n*fraction.d + modifierF*fraction.n*this.d;
+            result.d = this.d*fraction.d;    
+        } else {
+            result.n = modifierT*this.n + modifierF*fraction.n;
+            result.d = this.d;
+        }
+
 
         return result;
     }
@@ -124,12 +130,15 @@ export default class Fraction {
             modifierI = -1;
         }
 
-        console.log(`${modifierI}*${Math.pow(integer, 2)}*${this.d}`)
-
-        result.n = (modifierT*this.n) + (modifierI*Math.pow(integer, 2)*this.d);
-        result.d = this.d;
+        const resultN = (modifierT*this.n) + (modifierI*Math.pow(integer, 2))
+        const resultD = this.d;
+        result.setND(resultN, resultD)
 
         return result;
+    }
+
+    subtractI(integer){
+        return this.addI(-1*integer);
     }
 
     subtractF(fraction){
@@ -142,9 +151,9 @@ export default class Fraction {
         const result = new Fraction()
         const n = this.n * fraction.n;
         const d = this.d * fraction.d;
-        if(this.SIGN.positive && fraction.SIGN.negative ||
-           this.SIGN.negative && fraction.SIGN.positive){
-                result.SIGN.selectKey('negative')
+
+        if(this.SIGN.positive && fraction.SIGN.negative || this.SIGN.negative && fraction.SIGN.positive){
+            result.SIGN.selectKey('negative')
         }
         result.setND( n, d )
 
@@ -165,16 +174,18 @@ export default class Fraction {
     }
 
     divideF(fraction){
-        const result = new Fraction()
-        result.n = this.n * fraction.d;
-        result.d = this.d * fraction.n;
-        if(this.SIGN.positive && fraction.SIGN.negative ||
-           this.SIGN.negative && fraction.SIGN.positive){
-        
-            result.SIGN.selectKey('negative')
-        }
+        return this.multiplyF(fraction.getInverse())
 
-        return result;
+        // const result = new Fraction()
+        // result.n = this.n * fraction.d;
+        // result.d = this.d * fraction.n;
+        // if(this.SIGN.positive && fraction.SIGN.negative ||
+        //    this.SIGN.negative && fraction.SIGN.positive){
+        
+        //     result.SIGN.selectKey('negative')
+        // }
+
+        // return result;
     }
 
     divideI(integer){
