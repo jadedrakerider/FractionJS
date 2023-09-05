@@ -1,5 +1,5 @@
 'use strict';
-import MJStest from "./tests/tst.Fraction.mjs";
+import MJStest from "./test/tst.Fraction.mjs";
 
 
 const testing = true;

@@ -1,5 +1,5 @@
 'use strict';
-const CJStest = require('./tests/tst.Fraction.cjs')
+const CJStest = require('./test/tst.Fraction.cjs')
 
 
 const testing = true;

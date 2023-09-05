@@ -3,8 +3,7 @@ const Fraction = require('../Fraction.cjs')
 
 module.exports = () => {
 
-    const odds = new Fraction()
-    odds.setND(6, 4)
+    const odds = new Fraction(6, 4)
 
     console.log('fraction string:', odds.toString())
     console.log('fraction integer:', odds.toInteger())
