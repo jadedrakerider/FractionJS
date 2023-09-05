@@ -1,9 +1,9 @@
 // npm ./test/test.js
 
 const Fraction = require('../Fraction.cjs');
-const assert = require('assert');
 const chai = require('chai')
-    , expect = chai.expect;
+    , expect = chai.expect
+    , assert = chai.assert;
 
 
 
