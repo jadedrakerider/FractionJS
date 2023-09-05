@@ -9,9 +9,13 @@ const assert = chai.assert;
 
 const m = new Fraction(1,2)
 const n = new Fraction(-8,4)
+const o = m.multiplyF(n)
+const p = m.multiplyI(2)
+const q = m.divideF(n)
+const r = m.divideI(-2)
 
-describe('Positive Fraction m', () => {
-    it('should return true to verify values in the fraction', () => {
+describe('.mjs Fraction', () => {
+    it('Positive Fraction Initialization', () => {
       assert.equal(m.getN(), 1)
       assert.equal(m.getD(), 2)
       expect(m.SIGN.positive).to.be.true;
@@ -21,10 +25,8 @@ describe('Positive Fraction m', () => {
       assert.equal(m.toDecimal(), 0.5)
       expect(m.verify()).to.be.true;
     })
-})
 
-describe('Negative Fraction n', () => {
-    it('should return true to verify values in the fraction', () => {
+    it('Negative Fraction Initialization', () => {
         assert.equal(n.getN(), 4)
         assert.equal(n.getD(), 8)
         expect(n.SIGN.positive).to.be.false;
@@ -34,16 +36,8 @@ describe('Negative Fraction n', () => {
         assert.equal(n.toDecimal(), -0.50)
         expect(n.verify()).to.be.true;
     })
-})
 
-describe('Fraction Mathematical Methods', () => {
-
-    const o = m.multiplyF(n)
-    const p = m.multiplyI(2)
-    const q = m.divideF(n)
-    const r = m.divideI(-2)
-
-    it('should be able to multiply fractions together', () => {
+    it('Fraction Multiplication with Fractions', () => {
         assert.equal(o.getN(), 8)
         assert.equal(o.getD(), 8)
         expect(o.SIGN.positive).to.be.false;
@@ -54,7 +48,7 @@ describe('Fraction Mathematical Methods', () => {
         expect(o.verify()).to.be.true;
     })
 
-    it('should be able to multiply fractions by integers', () => {
+    it('Fraction Multiplication with Integers', () => {
         assert.equal(p.getN(), 2)
         assert.equal(p.getD(), 2)
         expect(p.SIGN.positive).to.be.true;
@@ -65,7 +59,7 @@ describe('Fraction Mathematical Methods', () => {
         expect(p.verify()).to.be.true;
     })
 
-    it('should be able to divide fractions by fractions', () => {
+    it('Fraction Division with Fractions', () => {
         assert.equal(q.getN(), 4)
         assert.equal(q.getD(), 16)
         expect(q.SIGN.positive).to.be.false;
@@ -76,7 +70,7 @@ describe('Fraction Mathematical Methods', () => {
         expect(q.verify()).to.be.true;
     })
 
-    it('should be able to divide fractions by integers', () => {
+    it('Fraction Division with Integers', () => {
         assert.equal(r.getN(), 1)
         assert.equal(r.getD(), 4)
         expect(r.SIGN.positive).to.be.false;
