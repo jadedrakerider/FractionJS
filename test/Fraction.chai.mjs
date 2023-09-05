@@ -2,9 +2,9 @@
 
 import Fraction from '../Fraction.mjs'
 import chai from 'chai'
-
 const expect = chai.expect
 const assert = chai.assert;
+
 
 
 const m = new Fraction(1,2)
