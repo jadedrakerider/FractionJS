@@ -1,4 +1,4 @@
-// npm ./test/test.js
+// To run: npm test
 
 const Fraction = require('../Fraction.cjs');
 const chai = require('chai')
