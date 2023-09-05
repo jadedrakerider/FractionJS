@@ -90,4 +90,10 @@ export default function MJStest() {
     console.log('reducing k to x ...')
     const x = k.reduce()
     console.log(`x = ${x.toString()}`)
+
+    m.setND(1,2)
+    n.setND(-8,4)
+    const y = m.divideF(n)
+    console.log(`\ny = ${y.toString()}`)
+
 }
