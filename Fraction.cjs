@@ -3,11 +3,16 @@
 const ENUM = require('./ext_libs/ENUMJS/ENUM.cjs')
 
 module.exports = class Fraction {
-    constructor(){
+    constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
         this.d = 0;
         this.SIGN = new ENUM('positive')
         this.SIGN.setKey('negative')
+        this.setND(intN, intD)
+        
+        if(!isPositive){
+            this.SIGN.selectKey('negative')
+        }
     }
 
     getAdditiveInverse(){
