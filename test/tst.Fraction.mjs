@@ -1,6 +1,8 @@
 'use strict';
 import Fraction from '../Fraction.mjs';
 
+
+
 export default function MJStest() {
 
     const odds = new Fraction()
