@@ -70,9 +70,24 @@ export default function MJStest() {
 
     const u = m.subtractF(n);
     console.log(`\nu.SIGN: ${u.SIGN}`)
-    console.log('m - 2 = u =>', u.toString())
+    console.log('m - 4 / 5 = u =>', u.toString())
 
     const v = m.subtractI(2);
     console.log(`\nu.SIGN: ${v.SIGN}`)
     console.log('m - 2 = v =>', v.toString())
+
+    const l = new Fraction()
+    l.setND(14, 7)
+    console.log(`\nl = ${l.toString()}`)
+    console.log('reducing l to w ...')
+    const w = l.reduce()
+    console.log(`w = ${w.toString()}`)
+
+    const k = new Fraction()
+    k.setND(7,14)
+    k.SIGN.selectKey('negative')
+    console.log(`\nk = ${k.toString()}`)
+    console.log('reducing k to x ...')
+    const x = k.reduce()
+    console.log(`x = ${x.toString()}`)
 }

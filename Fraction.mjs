@@ -4,11 +4,16 @@ import ENUM from './ext_libs/ENUMJS/ENUM.mjs'
 
 
 export default class Fraction {
-    constructor(){
+    constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
         this.d = 0;
         this.SIGN = new ENUM('positive')
         this.SIGN.setKey('negative')
+        this.setND(intN, intD)
+        
+        if(!isPositive){
+            this.SIGN.selectKey('negative')
+        }
     }
 
     getAdditiveInverse(){
@@ -18,6 +23,10 @@ export default class Fraction {
         result.SIGN.negative = !result.SIGN.negative;
 
         return result;
+    }
+
+    getDenominator(){
+        return this.d;
     }
 
     getInverse(){
@@ -32,12 +41,11 @@ export default class Fraction {
         return this.sign() * (this.n % this.d);
     }
 
-    setND( numerator, denominator){
-        // if( numerator >= 0 && denominator <= 0 ||
-        //     numerator <= 0 && denominator >= 0){
-        //         this.evaluateSign()            
-        // }
+    getNumerator(){
+        return this.n;
+    }
 
+    setND( numerator, denominator){
         // Must be in this order, otherwise will throw DivideByZero Error
         this.#setDenominator(denominator)
         this.#setNumerator(numerator)
@@ -116,10 +124,7 @@ export default class Fraction {
     }
 
     addI(integer){
-        /**
-         * @todo 
-        *    - Add support for negative integers
-         */
+
         const result = new Fraction()
         const modifierT = this.sign()
         
@@ -174,21 +179,6 @@ export default class Fraction {
 
     divideF(fraction){
         return this.multiplyF(fraction.getInverse())
-
-        /**
-         * @todo
-         *  - Refactored this to simply call multiplyF() with the inverse of the fraction.
-         */
-        // const result = new Fraction()
-        // result.n = this.n * fraction.d;
-        // result.d = this.d * fraction.n;
-        // if(this.SIGN.positive && fraction.SIGN.negative ||
-        //    this.SIGN.negative && fraction.SIGN.positive){
-        
-        //     result.SIGN.selectKey('negative')
-        // }
-
-        // return result;
     }
 
     divideI(integer){
@@ -227,4 +217,29 @@ export default class Fraction {
             return true;
         }
     }
+
+    reduce(){
+        const result = this;
+        const factors = { up: 0, down: 0 }
+        let base = 0;
+        
+        result.setND(this.n, this.d)
+        
+        for( let i = 1 ; base < result.getDenominator() || base < result.getNumerator() ; i++){
+            base = 2**i;
+            factors.up = base + 1;
+            factors.down = base - 1;
+
+            if(result.d % factors.up === 0 && result.n % factors.up === 0){
+                result.setND( result.getNumerator()/factors.up, result.getDenominator()/factors.up )
+                i = 1;
+            } else if(result.d % factors.down === 0 && result.n % factors.down === 0){
+                result.setND( result.getNumerator()/factors.down, result.getDenominator()/factors.down )
+                i = 1;
+            }
+        }
+
+        return result;
+    }
+
 }
