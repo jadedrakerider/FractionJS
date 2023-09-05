@@ -4,9 +4,7 @@ const Fraction = require('../Fraction.cjs');
 const chai = require('chai')
     , expect = chai.expect
     , assert = chai.assert;
-
-
-
+// 
 
 
 const m = new Fraction(1,2)
@@ -38,16 +36,12 @@ describe('Negative Fraction n', () => {
     })
 })
 
-
-
 describe('Fraction Mathematical Methods', () => {
-
-    // const m = new Fraction(1,2)
-    // const n = new Fraction(-8,4)
 
     const o = m.multiplyF(n)
     const p = m.multiplyI(2)
     const q = m.divideF(n)
+    const r = m.divideI(-2)
 
     it('should be able to multiply fractions together', () => {
         assert.equal(o.getN(), 8)
@@ -81,8 +75,7 @@ describe('Fraction Mathematical Methods', () => {
         assert.equal(q.toDecimal(), -0.25)
         expect(q.verify()).to.be.true;
     })
-    // const m = new Fraction(1,2)
-    const r = m.divideI(-2)
+
     it('should be able to divide fractions by integers', () => {
         assert.equal(r.getN(), 1)
         assert.equal(r.getD(), 4)
@@ -95,15 +88,6 @@ describe('Fraction Mathematical Methods', () => {
     })
 
 })
-
-
-
-
-
-
-
-
-
 
 
 
