@@ -6,6 +6,7 @@ const expect = chai.expect
 const assert = chai.assert;
 
 
+
 const m = new Fraction(1,2)
 const n = new Fraction(-8,4)
 const o = m.multiplyF(n)
@@ -13,7 +14,7 @@ const p = m.multiplyI(2)
 const q = m.divideF(n)
 const r = m.divideI(-2)
 
-describe('Fraction MJS', () => {
+describe('Bundle: Fraction MJS', () => {
 
     it('Positive Fraction', () => {
       assert.equal(m.getN(), 1)
@@ -94,4 +95,3 @@ describe('DESCRIPTION', () => {
 })
 
 */
-

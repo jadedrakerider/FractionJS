@@ -1,9 +1,10 @@
 // To run: npm test
 
-import Fraction from '../Fraction.mjs'
-import chai from 'chai'
-const expect = chai.expect
-const assert = chai.assert;
+const Fraction = require('../Fraction.cjs');
+const chai = require('chai')
+    , expect = chai.expect
+    , assert = chai.assert;
+// 
 
 
 const m = new Fraction(1,2)
@@ -13,7 +14,7 @@ const p = m.multiplyI(2)
 const q = m.divideF(n)
 const r = m.divideI(-2)
 
-describe('Fraction MJS', () => {
+describe('Bundle: Fraction CJS', () => {
 
     it('Positive Fraction', () => {
       assert.equal(m.getN(), 1)
@@ -94,4 +95,3 @@ describe('DESCRIPTION', () => {
 })
 
 */
-
