@@ -24,13 +24,13 @@ module.exports = class Fraction {
         return result;
     }
 
-    getDenominator(){
+    getD(){
         return this.d;
     }
 
     getInverse(){
-        const result = new Fraction()
-
+        const result = this;
+        
         result.setND(this.d, this.n)
 
         return result;
@@ -40,7 +40,7 @@ module.exports = class Fraction {
         return this.sign() * (this.n % this.d);
     }
 
-    getNumerator(){
+    getN(){
         return this.n;
     }
 
@@ -61,11 +61,11 @@ module.exports = class Fraction {
         this.verify();
     }
 
+    /** 
+    * @summary evaluateSign() determines if the sign needs to be toggles and 
+    *     swaps SIGN enum.
+    */
     evaluateSign(){
-        /** 
-        * @summary evaluateSign() determines if the sign needs to be toggles and 
-        *     swaps SIGN enum.
-        */
         if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.positive) {
             this.n = Math.abs(this.n)
             this.d = Math.abs(this.d)
@@ -98,82 +98,61 @@ module.exports = class Fraction {
     }
 
     toString(){
-        if(this.SIGN.positive){
-            return `${this.n} / ${this.d}`;
-        } else {
-            return `- ${this.n} / ${this.d}`
-        }
+        let result;
+        
+        this.SIGN.positive 
+            ? result = `${this.n} / ${this.d}`
+            : result = `- ${this.n} / ${this.d}`
+
+        return result;
+
+        // if(this.SIGN.positive){
+        //     return `${this.n} / ${this.d}`;
+        // } else {
+        //     return `- ${this.n} / ${this.d}`
+        // }
     }
 
     addF(fraction){
-        const result = new Fraction()
         const modifierT = this.sign()
         const modifierF = fraction.sign()
-
+        const sign = this.SIGN.positive === fraction.SIGN.positive;
+        let n,d;
+        
         if(this.d != fraction.d){
-            result.n = modifierT*this.n*fraction.d + modifierF*fraction.n*this.d;
-            result.d = this.d*fraction.d;    
+            n = modifierT*this.n*fraction.d + modifierF*fraction.n*this.d;
+            d = this.d*fraction.d;    
         } else {
-            result.n = modifierT*this.n + modifierF*fraction.n;
-            result.d = this.d;
+            n = modifierT*this.n + modifierF*fraction.n;
+            d = this.d;
         }
 
-
-        return result;
+        return new Fraction(n, d, sign)
     }
 
     addI(integer){
+        return this.addF(new Fraction(integer, 1 , positive(integer)))
+    }
 
-        const result = new Fraction()
-        const modifierT = this.sign()
-        
-        let modifierI;
-        if(integer >= 0) {
-            modifierI = 1;
-        } else {
-            modifierI = -1;
-        }
-
-        const resultN = (modifierT*this.n) + (modifierI*Math.pow(integer, 2))
-        const resultD = this.d;
-        result.setND(resultN, resultD)
-
-        return result;
+    subtractF(fraction){
+        return this.addF(fraction.getAdditiveInverse())
     }
 
     subtractI(integer){
         return this.addI(-1*integer);
     }
 
-    subtractF(fraction){
-        fraction = fraction.getAdditiveInverse()
-        return this.addF(fraction)
-    }
-
     multiplyF(fraction){
-        const result = new Fraction()
         const n = this.n * fraction.n;
         const d = this.d * fraction.d;
-
-        if(this.SIGN.positive && fraction.SIGN.negative || this.SIGN.negative && fraction.SIGN.positive){
-            result.SIGN.selectKey('negative')
-        }
-        result.setND( n, d )
+        const sign = this.SIGN.positive === fraction.SIGN.positive;
+        const result = new Fraction(n,d,sign)
 
         return result;
     }
 
     multiplyI(integer){
-        const result = new Fraction()
-
-        result.n = this.n * Math.pow(integer, 2)
-        result.d = this.d ;
-
-        if(integer < 0){
-            result.SIGN.selectKey('negative')
-        }
-
-        return result;
+        return this.multiplyF(new Fraction(integer, 1, positive(integer)))
     }
 
     divideF(fraction){
@@ -181,17 +160,17 @@ module.exports = class Fraction {
     }
 
     divideI(integer){
-        
-        const result = new Fraction()
+        return this.multiplyF(new Fraction(1, integer, positive(integer)))        
+        // const result = new Fraction()
 
-        result.n = this.n;
-        result.d = this.d * Math.pow(integer, 2);
+        // result.n = this.n;
+        // result.d = this.d * Math.pow(integer, 2);
 
-        if(integer < 0){
-            result.SIGN.selectKey('negative')
-        }
+        // if(integer < 0){
+        //     result.SIGN.selectKey('negative')
+        // }
 
-        return result;
+        // return result;
     }
 
     sign(){
@@ -224,16 +203,16 @@ module.exports = class Fraction {
         
         result.setND(this.n, this.d)
         
-        for( let i = 1 ; base < result.getDenominator() || base < result.getNumerator() ; i++){
+        for( let i = 1 ; base < result.getD() || base < result.getN() ; i++){
             base = 2**i;
             factors.up = base + 1;
             factors.down = base - 1;
 
             if(result.d % factors.up === 0 && result.n % factors.up === 0){
-                result.setND( result.getNumerator()/factors.up, result.getDenominator()/factors.up )
+                result.setND( result.getN()/factors.up, result.getD()/factors.up )
                 i = 1;
             } else if(result.d % factors.down === 0 && result.n % factors.down === 0){
-                result.setND( result.getNumerator()/factors.down, result.getDenominator()/factors.down )
+                result.setND( result.getN()/factors.down, result.getD()/factors.down )
                 i = 1;
             }
         }
@@ -241,4 +220,14 @@ module.exports = class Fraction {
         return result;
     }
 
+
 }
+
+/**
+ * @summary 
+ *   positive() returns true if integer is positive, false if negative.
+ */
+function positive(integer){
+    integer >= 0 ? true : false;
+}
+
