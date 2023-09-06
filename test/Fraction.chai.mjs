@@ -6,6 +6,7 @@ const expect = chai.expect
 const assert = chai.assert;
 
 
+
 const m = new Fraction(1,2)
 const n = new Fraction(-8,4)
 const o = m.multiplyF(n)
