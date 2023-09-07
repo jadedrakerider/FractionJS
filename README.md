@@ -12,6 +12,6 @@ Although decimals are the standard for computer science, Fractions can contain i
 
 Generally the information lost is negligible. However, for some mathematical operations (ex. using Radians) it is much preferable to preserve this information.
 
-## Download 
+## Download
 
-Download the [zip](https://github.com/GeorgeSchafer/FractionJS/blob/demo/ext_libs.zip) and use as needed. 
+Download the [ext_libs](https://github.com/GeorgeSchafer/FractionJS/blob/demo/ext_libs/) folder and use as needed.
