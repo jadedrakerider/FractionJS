@@ -1,6 +1,6 @@
 // To run: npm test
 
-const Fraction = require('../Fraction.cjs');
+const Fraction = require('../ext_libs/FractionJS/Fraction.cjs');
 const chai = require('chai')
     , expect = chai.expect
     , assert = chai.assert;

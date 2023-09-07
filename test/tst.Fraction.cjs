@@ -1,5 +1,5 @@
 'use strict';
-const Fraction = require('../Fraction.cjs')
+const Fraction = require('../ext_libs/FractionJS/Fraction.cjs')
 
 module.exports = () => {
 

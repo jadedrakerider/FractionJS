@@ -1,6 +1,6 @@
 // To run: npm test
 
-import Fraction from '../Fraction.mjs'
+import Fraction from '../ext_libs/FractionJS/Fraction.mjs'
 import chai from 'chai'
 const expect = chai.expect
 const assert = chai.assert;

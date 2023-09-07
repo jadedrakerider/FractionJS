@@ -1,5 +1,5 @@
 'use strict';
-import Fraction from '../Fraction.mjs';
+import Fraction from '../ext_libs/FractionJS/Fraction.mjs';
 
 
 

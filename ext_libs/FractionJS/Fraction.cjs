@@ -1,10 +1,8 @@
 'use strict';
-import ENUM from './ext_libs/ENUMJS/ENUM.mjs'
+ 
+const ENUM = require('../ENUMJS/ENUM.cjs')
 
-
-
-export default class Fraction {
-
+module.exports = class Fraction {
     constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
         this.d = 0;
@@ -163,6 +161,16 @@ export default class Fraction {
 
     divideI(integer){
         return this.multiplyF(new Fraction(1, integer, positive(integer)))        
+        // const result = new Fraction()
+
+        // result.n = this.n;
+        // result.d = this.d * Math.pow(integer, 2);
+
+        // if(integer < 0){
+        //     result.SIGN.selectKey('negative')
+        // }
+
+        // return result;
     }
 
     sign(){
@@ -211,6 +219,8 @@ export default class Fraction {
 
         return result;
     }
+
+
 }
 
 /**
@@ -220,3 +230,4 @@ export default class Fraction {
 function positive(integer){
     integer >= 0 ? true : false;
 }
+
