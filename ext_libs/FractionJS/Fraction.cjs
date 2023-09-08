@@ -3,6 +3,7 @@
 const ENUM = require('../ENUMJS/ENUM.cjs')
 
 module.exports = class Fraction {
+
     constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
         this.d = 0;
@@ -45,7 +46,15 @@ module.exports = class Fraction {
     }
 
     setND( numerator, denominator){
-        // Must be in this order, otherwise will throw DivideByZero Error
+        /**
+         * @summary
+         *      setND() sets the numerator and denominator of a Fraction.
+         * @note
+         *      Must be in this order, otherwise will throw DivideByZero Error
+         *              this.#setDenominator(denominator)
+         *              this.#setNumerator(numerator)
+         */
+        // 
         this.#setDenominator(denominator)
         this.#setNumerator(numerator)
         this.evaluateSign()
@@ -105,12 +114,6 @@ module.exports = class Fraction {
             : result = `- ${this.n} / ${this.d}`
 
         return result;
-
-        // if(this.SIGN.positive){
-        //     return `${this.n} / ${this.d}`;
-        // } else {
-        //     return `- ${this.n} / ${this.d}`
-        // }
     }
 
     addF(fraction){
@@ -161,16 +164,6 @@ module.exports = class Fraction {
 
     divideI(integer){
         return this.multiplyF(new Fraction(1, integer, positive(integer)))        
-        // const result = new Fraction()
-
-        // result.n = this.n;
-        // result.d = this.d * Math.pow(integer, 2);
-
-        // if(integer < 0){
-        //     result.SIGN.selectKey('negative')
-        // }
-
-        // return result;
     }
 
     sign(){
@@ -219,8 +212,6 @@ module.exports = class Fraction {
 
         return result;
     }
-
-
 }
 
 /**
