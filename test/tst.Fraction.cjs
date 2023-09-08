@@ -1,6 +1,12 @@
 'use strict';
 const Fraction = require('../ext_libs/FractionJS/Fraction.cjs')
 
+/**
+ * @todo
+ *      Deprecated
+ *      Migrate error checks to Chai
+ */
+
 module.exports = () => {
 
     const odds = new Fraction(6, 4)
