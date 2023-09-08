@@ -82,6 +82,12 @@ describe('Fraction MJS', () => {
         expect(r.verify()).to.be.true;
     })
 
+    it('Throws errors for invalid fractions', () => {
+        const DivideByZero = new Fraction()
+
+        expect(DivideByZero.setND(1,0)).to.throw()
+    })
+
 })
 
 
