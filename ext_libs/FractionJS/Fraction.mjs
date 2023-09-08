@@ -47,7 +47,15 @@ export default class Fraction {
     }
 
     setND( numerator, denominator){
-        // Must be in this order, otherwise will throw DivideByZero Error
+        /**
+         * @summary
+         *      setND() sets the numerator and denominator of a Fraction.
+         * @note
+         *      Must be in this order, otherwise will throw DivideByZero Error
+         *              this.#setDenominator(denominator)
+         *              this.#setNumerator(numerator)
+         */
+        // 
         this.#setDenominator(denominator)
         this.#setNumerator(numerator)
         this.evaluateSign()
@@ -107,12 +115,6 @@ export default class Fraction {
             : result = `- ${this.n} / ${this.d}`
 
         return result;
-
-        // if(this.SIGN.positive){
-        //     return `${this.n} / ${this.d}`;
-        // } else {
-        //     return `- ${this.n} / ${this.d}`
-        // }
     }
 
     addF(fraction){
