@@ -1,7 +1,11 @@
 'use strict';
 import Fraction from '../ext_libs/FractionJS/Fraction.mjs';
 
-
+/**
+ * @todo
+ *      Deprecated
+ *      Migrate error checks to Chai
+ */
 
 export default function MJStest() {
 
