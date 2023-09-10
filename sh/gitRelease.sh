@@ -4,10 +4,10 @@ git add .
 git commit -m "Releasing changes"
 git push
 
-git branch checkout main
+git checkout main
 git merge Dev-Alpha
 
-git branch checkout Release
+git checkout Release
 git merge main
 
-git branch checkout Dev-Alpha
+git checkout Dev-Alpha
