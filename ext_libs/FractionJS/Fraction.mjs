@@ -18,7 +18,7 @@ export default class Fraction {
     }
 
     getAdditiveInverse(){
-        const result = this;
+        const result = this.duplicate();
 
         result.SIGN.positive = !result.SIGN.positive;
         result.SIGN.negative = !result.SIGN.negative;
@@ -31,7 +31,7 @@ export default class Fraction {
     }
 
     getInverse(){
-        const result = this;
+        const result = this.duplicate();
         
         result.setND(this.d, this.n)
 
@@ -72,8 +72,8 @@ export default class Fraction {
     }
 
     /** 
-    * @summary evaluateSign() determines if the sign needs to be toggles and 
-    *     swaps SIGN enum.
+    * @summary 
+    *       evaluateSign() determines if the sign needs to be toggles and swaps SIGN ENUM.
     */
     evaluateSign(){
         if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.positive) {
@@ -167,6 +167,10 @@ export default class Fraction {
         return this.multiplyF(new Fraction(1, integer, positive(integer)))        
     }
 
+    duplicate(){
+        return new Fraction(this.n, this.d, this.SIGN.positive)
+    }
+
     sign(){
         /** 
         * @summary
@@ -181,7 +185,7 @@ export default class Fraction {
     
     verify(){
         if( this.n != 0 && this.d === 0 ){
-            throw new Error('DivideByZero: denominator cannot be zero unless numerator is also zero.')
+            throw new TypeError('DivideByZero: denominator cannot be zero unless numerator is also zero.')
         } else if( (this.SIGN.positive && this.SIGN.negative) || 
                    (!this.SIGN.positive && !this.SIGN.negative)  ){
             throw new Error('SignConflict: SIGN.postive must have the opposite value of SIGN.negative')
@@ -191,7 +195,7 @@ export default class Fraction {
     }
 
     reduce(){
-        const result = this;
+        const result = this.duplicate();
         const factors = { up: 0, down: 0 }
         let base = 0;
         
