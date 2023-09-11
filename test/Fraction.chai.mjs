@@ -82,8 +82,17 @@ describe('Fraction MJS', () => {
         expect(r.verify()).to.be.true;
     })
 
+    it('toString methods', () => {
+        assert.equal(m.toString(), '1 / 2')
+        assert.equal(n.toString(), '- 8 / 4')
+        assert.equal(o.toString(), '- 8 / 8')
+        assert.equal(p.toString(), '2 / 2')
+        assert.equal(q.toString(), '- 4 / 16')
+    })
+
     it('Error Testing DivideByZero', () => {
         let s = new Fraction(1,1)
+        expect(() => {s.setND(1,2)}).not.to.throw(TypeError, 'DivideByZero')
         expect(() => {s.setND(1,0)}).to.throw(TypeError, 'DivideByZero')
     })
 
