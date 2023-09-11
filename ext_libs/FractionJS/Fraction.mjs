@@ -18,7 +18,7 @@ export default class Fraction {
     }
 
     getAdditiveInverse(){
-        const result = this;
+        const result = this.duplicate();
 
         result.SIGN.positive = !result.SIGN.positive;
         result.SIGN.negative = !result.SIGN.negative;
@@ -31,7 +31,7 @@ export default class Fraction {
     }
 
     getInverse(){
-        const result = this;
+        const result = this.duplicate();
         
         result.setND(this.d, this.n)
 
@@ -167,6 +167,10 @@ export default class Fraction {
         return this.multiplyF(new Fraction(1, integer, positive(integer)))        
     }
 
+    duplicate(){
+        return new Fraction(this.n, this.d, this.SIGN.positive)
+    }
+
     sign(){
         /** 
         * @summary
@@ -191,7 +195,7 @@ export default class Fraction {
     }
 
     reduce(){
-        const result = this;
+        const result = this.duplicate();
         const factors = { up: 0, down: 0 }
         let base = 0;
         
