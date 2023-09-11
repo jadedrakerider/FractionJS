@@ -89,6 +89,12 @@ describe('Fraction CJS', () => {
 
     it('Error Testing SignConflict', () => {
         let s = new Fraction(1,1)
+        s.SIGN.positive = true;
+        s.SIGN.negative = false;
+        expect(() => {s.verify()}).not.to.throw(Error)
+        s.SIGN.positive = false;
+        s.SIGN.negative = true;
+        expect(() => {s.verify()}).not.to.throw(Error)
         s.SIGN.positive = false;
         s.SIGN.negative = false;
         expect(() => {s.verify()}).to.throw(Error, 'SignConflict')
