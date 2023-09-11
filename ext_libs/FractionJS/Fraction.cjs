@@ -184,7 +184,7 @@ module.exports = class Fraction {
     
     verify(){
         if( this.n != 0 && this.d === 0 ){
-            throw new Error('DivideByZero: denominator cannot be zero unless numerator is also zero.')
+            throw new TypeError('DivideByZero: denominator cannot be zero unless numerator is also zero.')
         } else if( (this.SIGN.positive && this.SIGN.negative) || 
                    (!this.SIGN.positive && !this.SIGN.negative)  ){
             throw new Error('SignConflict: SIGN.postive must have the opposite value of SIGN.negative')
