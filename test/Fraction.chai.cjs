@@ -28,13 +28,13 @@ describe('Fraction CJS', () => {
     })
 
     it('Negative Fraction', () => {
-        assert.equal(n.getN(), 4)
-        assert.equal(n.getD(), 8)
+        assert.equal(n.getN(), 8)
+        assert.equal(n.getD(), 4)
         expect(n.SIGN.positive).to.be.false;
         expect(n.SIGN.negative).to.be.true;
-        assert.equal(n.toInteger(), 0)
-        assert.equal(n.getModulus(), -4)
-        assert.equal(n.toDecimal(), -0.50)
+        assert.equal(n.toInteger(), -2)
+        assert.equal(n.getModulus(), 0)
+        assert.equal(n.toDecimal(), -2.0)
         expect(n.verify()).to.be.true;
     })
 
@@ -80,6 +80,21 @@ describe('Fraction CJS', () => {
         assert.equal(r.getModulus(), -1)
         assert.equal(r.toDecimal(), -0.25)
         expect(r.verify()).to.be.true;
+    })
+
+    it('Error Testing DivideByZero', () => {
+        let s = new Fraction(1,1)
+        expect(() => {s.setND(1,0)}).to.throw(TypeError, 'DivideByZero')
+    })
+
+    it('Error Testing SignConflict', () => {
+        let s = new Fraction(1,1)
+        s.SIGN.positive = false;
+        s.SIGN.negative = false;
+        expect(() => {s.verify()}).to.throw(Error, 'SignConflict')
+        s.SIGN.positive = true;
+        s.SIGN.negative = true;
+        expect(() => {s.verify()}).to.throw(Error, 'SignConflict')
     })
 
 })
