@@ -1,8 +1,9 @@
 'use strict';
- 
-const ENUM = require('../ENUMJS/ENUM.cjs')
+import ENUM from './libs/ENUMJS/ENUM.mjs'
 
-module.exports = class Fraction {
+
+
+export default class Fraction {
 
     constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
@@ -71,8 +72,8 @@ module.exports = class Fraction {
     }
 
     /** 
-    * @summary evaluateSign() determines if the sign needs to be toggles and 
-    *     swaps SIGN enum.
+    * @summary 
+    *       evaluateSign() determines if the sign needs to be toggles and swaps SIGN ENUM.
     */
     evaluateSign(){
         if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.positive) {
@@ -225,4 +226,3 @@ module.exports = class Fraction {
 function positive(integer){
     integer >= 0 ? true : false;
 }
-
