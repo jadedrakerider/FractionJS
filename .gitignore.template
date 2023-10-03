@@ -3,7 +3,4 @@
 /tests
 
 .gitignore
-package.json
-index.js
-index.mjs
-
+package-lock.json
