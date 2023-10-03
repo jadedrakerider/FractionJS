@@ -1,15 +1,14 @@
 #!/bin/bash
 
-git add .
-git commit -m "Releasing changes"
+git commit . -m "Releasing changes"
 git push
 
 git checkout main
 git commit -m "Releasing changes"
-git merge Dev-Alpha
+git merge Dev
 
 git checkout Release
 git commit -m "Releasing changes"
 git merge main
 
-git checkout Dev-Alpha
+git checkout Dev
