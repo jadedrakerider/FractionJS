@@ -1,8 +1,8 @@
 # ENUMJS ReadMe
 
-I use my personal implementation of [ENUMs](https://github.com/GeorgeSchafer/ENUMJS) which. Here is the link:
+I use my personal implementation of [ENUMs](https://github.com/GeorgeSchafer/ENUMJS).
 
-Clone the libarary with: 
+Clone the library with: 
 
 ```
 $ git clone https://github.com/GeorgeSchafer/ENUMJS.git
