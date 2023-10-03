@@ -1,10 +1,10 @@
 // To run: npm test
 
-const Fraction = require('../Fraction.cjs');
 const chai = require('chai')
     , expect = chai.expect
     , assert = chai.assert;
-// 
+const Fraction = require('../Fraction.cjs');
+
 
 
 const m = new Fraction(1,2)
@@ -13,10 +13,11 @@ const o = m.multiplyF(n)
 const p = m.multiplyI(2)
 const q = m.divideF(n)
 const r = m.divideI(-2)
+let counter = 1;
 
 describe('Fraction CJS', () => {
 
-    it('Positive Fraction', () => {
+    it(`Test ${counter}: Positive Fraction`, () => {
       assert.equal(m.getN(), 1)
       assert.equal(m.getD(), 2)
       expect(m.SIGN.positive).to.be.true;
@@ -26,8 +27,9 @@ describe('Fraction CJS', () => {
       assert.equal(m.toDecimal(), 0.5)
       expect(m.verify()).to.be.true;
     })
+    counter++;
 
-    it('Negative Fraction', () => {
+    it(`Test ${counter}: Negative Fraction`, () => {
         assert.equal(n.getN(), 8)
         assert.equal(n.getD(), 4)
         expect(n.SIGN.positive).to.be.false;
@@ -37,8 +39,9 @@ describe('Fraction CJS', () => {
         assert.equal(n.toDecimal(), -2.0)
         expect(n.verify()).to.be.true;
     })
+    counter++;
 
-    it('Multiply Fractions together', () => {
+    it(`Test ${counter}: Multiply Fractions together`, () => {
         assert.equal(o.getN(), 8)
         assert.equal(o.getD(), 8)
         expect(o.SIGN.positive).to.be.false;
@@ -48,8 +51,9 @@ describe('Fraction CJS', () => {
         assert.equal(o.toDecimal(), -1.0)
         expect(o.verify()).to.be.true;
     })
+    counter++;
 
-    it('Multiply Fractions by integers', () => {
+    it(`Test ${counter}: Multiply Fractions by integers`, () => {
         assert.equal(p.getN(), 2)
         assert.equal(p.getD(), 2)
         expect(p.SIGN.positive).to.be.true;
@@ -59,8 +63,9 @@ describe('Fraction CJS', () => {
         assert.equal(p.toDecimal(), 1.0)
         expect(p.verify()).to.be.true;
     })
+    counter++;
 
-    it('Divide Fractions', () => {
+    it(`Test ${counter}: Divide Fractions`, () => {
         assert.equal(q.getN(), 4)
         assert.equal(q.getD(), 16)
         expect(q.SIGN.positive).to.be.false;
@@ -70,8 +75,9 @@ describe('Fraction CJS', () => {
         assert.equal(q.toDecimal(), -0.25)
         expect(q.verify()).to.be.true;
     })
+    counter++;
 
-    it('Divide Fractions by integers', () => {
+    it(`Test ${counter}: Divide Fractions by integers`, () => {
         assert.equal(r.getN(), 1)
         assert.equal(r.getD(), 4)
         expect(r.SIGN.positive).to.be.false;
@@ -81,22 +87,25 @@ describe('Fraction CJS', () => {
         assert.equal(r.toDecimal(), -0.25)
         expect(r.verify()).to.be.true;
     })
+    counter++;
 
-    it('toString methods', () => {
+    it(`Test ${counter}: toString methods`, () => {
         assert.equal(m.toString(), '1 / 2')
         assert.equal(n.toString(), '- 8 / 4')
         assert.equal(o.toString(), '- 8 / 8')
         assert.equal(p.toString(), '2 / 2')
         assert.equal(q.toString(), '- 4 / 16')
     })
+    counter++;
 
-    it('Error Testing DivideByZero', () => {
+    it(`Test ${counter}: Error Testing DivideByZero`, () => {
         let s = new Fraction(1,1)
         expect(() => {s.setND(1,2)}).not.to.throw(TypeError, 'DivideByZero')
         expect(() => {s.setND(1,0)}).to.throw(TypeError, 'DivideByZero')
     })
+    counter++;
 
-    it('Error Testing SignConflict', () => {
+    it(`Test ${counter}: Error Testing SignConflict`, () => {
         let s = new Fraction(1,1)
         s.SIGN.positive = true;
         s.SIGN.negative = false;
@@ -111,13 +120,14 @@ describe('Fraction CJS', () => {
         s.SIGN.negative = true;
         expect(() => {s.verify()}).to.throw(Error, 'SignConflict')
     })
+    counter++;
 
 })
 
 /**
 
-describe('DESCRIPTION', () => {
-   it('SUMMARY', () => {
+describe(`DESCRIPTION`, () => {
+   it(`SUMMARY`, () => {
 
    })
 })
