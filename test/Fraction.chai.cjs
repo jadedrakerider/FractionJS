@@ -1,6 +1,6 @@
 // To run: npm test
 
-const Fraction = require('../ext_libs/FractionJS/Fraction.cjs');
+const Fraction = require('../Fraction.cjs');
 const chai = require('chai')
     , expect = chai.expect
     , assert = chai.assert;
@@ -14,7 +14,7 @@ const p = m.multiplyI(2)
 const q = m.divideF(n)
 const r = m.divideI(-2)
 
-describe('Fraction MJS', () => {
+describe('Fraction CJS', () => {
 
     it('Positive Fraction', () => {
       assert.equal(m.getN(), 1)
