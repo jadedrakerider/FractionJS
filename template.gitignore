@@ -1,6 +1,9 @@
-/node_modules
-
-/tests
+.git
 
 .gitignore
-package-lock.json
+
+.upm
+/node_modules
+
+.replit
+replit.nix
