@@ -1,14 +1,16 @@
 #!/bin/bash
+# This should be run only after verifying the branch passes its unit tests.
+
 
 git commit . -m "Releasing changes"
 git push
 
 git checkout main
-git commit -m "Releasing changes"
-git merge Dev
+git merge dev -m "Releasing changes"
+git push
 
-git checkout Release
-git commit -m "Releasing changes"
-git merge main
+git checkout release
+git merge main -m "Releasing changes"
+git push
 
-git checkout Dev
+git checkout dev
