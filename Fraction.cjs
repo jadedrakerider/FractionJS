@@ -1,18 +1,16 @@
 'use strict';
  
-const ENUM = require('./libs/ENUMJS/ENUM.cjs')
-
+const { Enum } = require('./libs/Enum/ENUM.cjs')
 module.exports = class Fraction {
 
     constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
         this.d = 0;
-        this.SIGN = new ENUM('positive')
-        this.SIGN.setKey('negative')
+        this.SIGN = new Enum(['POSITIVE','NEGATIVE'])
         this.setND(intN, intD)
         
         if(!isPositive){
-            this.SIGN.selectKey('negative')
+            this.SIGN.select('NEGATIVE')
         }
     }
 
@@ -37,7 +35,7 @@ module.exports = class Fraction {
         return result;
     }
 
-    getModulus(){
+    getSignedRemainder(){
         return this.sign() * (this.n % this.d);
     }
 
@@ -51,21 +49,21 @@ module.exports = class Fraction {
          *      setND() sets the numerator and denominator of a Fraction.
          * @note
          *      Must be in this order, otherwise will throw DivideByZero Error
-         *              this.#setDenominator(denominator)
-         *              this.#setNumerator(numerator)
+         *              this.setDenominator(denominator)
+         *              this.setNumerator(numerator)
          */
         // 
-        this.#setDenominator(denominator)
-        this.#setNumerator(numerator)
+        this.setDenominator(denominator)
+        this.setNumerator(numerator)
         this.evaluateSign()
     }
 
-    #setNumerator( numerator ){
+    setNumerator( numerator ){
         this.n = numerator;
         this.verify()
     }
 
-    #setDenominator( denominator ){
+    setDenominator( denominator ){
         this.d = denominator;
         this.verify();
     }
@@ -78,11 +76,11 @@ module.exports = class Fraction {
         if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.positive) {
             this.n = Math.abs(this.n)
             this.d = Math.abs(this.d)
-            this.SIGN.selectKey('negative')
+            this.SIGN.select('NEGATIVE')
         } else if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.negative) {
             this.n = Math.abs(this.n)
             this.d = Math.abs(this.d)
-            this.SIGN.selectKey('positive')
+            this.SIGN.select('POSITIVE')
         } else {
             this.n = Math.abs(this.n)
             this.d = Math.abs(this.d)
@@ -93,15 +91,17 @@ module.exports = class Fraction {
         return this.sign() * Math.floor(this.n/this.d);
     }
 
-    toDecimal(){
+    toFloat(){
     /** 
     * @note the sign() method cannot be used here because a decimal is required.
     */
-        if(this.SIGN.positive){
-            return 1.0*this.n/this.d;
-        } else {
-            return (-1.0)*(this.n/this.d);
-        }
+    {
+        // Use the sign() method to determine the sign
+        const signMultiplier = this.sign();
+    
+        // Calculate the decimal value using the signMultiplier
+        return signMultiplier * (this.n / this.d);
+    }
 
         
     }
@@ -223,6 +223,6 @@ module.exports = class Fraction {
  *   positive() returns true if integer is positive, false if negative.
  */
 function positive(integer){
-    integer >= 0 ? true : false;
+    return integer >= 0;
 }
 
