@@ -1,46 +1,56 @@
-'use strict';
+'use strict'
  
 const { Enum } = require('./libs/Enum/ENUM.cjs')
+
 module.exports = class Fraction {
 
-    constructor( intN=0, intD=0, isPositive=true ){
-        this.n = 0;
-        this.d = 0;
-        this.SIGN = new Enum(['POSITIVE','NEGATIVE'])
+    constructor( intN=0, intD=0 ){
+        this.n = 0
+        this.d = 0
+        this.sign = new Enum(['POSITIVE', 'NEGATIVE'])
         this.setND(intN, intD)
-        
-        if(!isPositive){
-            this.SIGN.select('NEGATIVE')
-        }
     }
 
     getAdditiveInverse(){
-        const result = this.duplicate();
-
-        result.SIGN.positive = !result.SIGN.positive;
-        result.SIGN.negative = !result.SIGN.negative;
-
-        return result;
+        /**
+         * @method getAdditiveInverse
+         * @todo rewrite
+         */
+        throw new Error('.getAdditiveInverse() needs to be written')
     }
 
     getD(){
-        return this.d;
+        return this.d
     }
 
     getInverse(){
-        const result = this.duplicate();
+        const result = this.duplicate()
         
         result.setND(this.d, this.n)
 
-        return result;
+        return result
+    }
+
+    getModulus(){
+        /**
+         * @method getModulus
+         * @todo 
+         * Rewrite 
+         */
+        throw new Error('getModulus needs to be written')
     }
 
     getSignedRemainder(){
-        return this.sign() * (this.n % this.d);
+        /**
+         * @method getSignedRemainder
+         * @todo 
+         * Rewrite 
+         */
+        throw new Error('getModulus needs to be written')
     }
 
     getN(){
-        return this.n;
+        return this.n
     }
 
     setND( numerator, denominator){
@@ -59,13 +69,12 @@ module.exports = class Fraction {
     }
 
     setNumerator( numerator ){
-        this.n = numerator;
+        this.n = numerator
         this.verify()
     }
 
     setDenominator( denominator ){
-        this.d = denominator;
-        this.verify();
+        this.d = denominator
     }
 
     /** 
@@ -73,64 +82,53 @@ module.exports = class Fraction {
     *     swaps SIGN enum.
     */
     evaluateSign(){
-        if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.positive) {
-            this.n = Math.abs(this.n)
-            this.d = Math.abs(this.d)
-            this.SIGN.select('NEGATIVE')
-        } else if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.negative) {
-            this.n = Math.abs(this.n)
-            this.d = Math.abs(this.d)
-            this.SIGN.select('POSITIVE')
-        } else {
-            this.n = Math.abs(this.n)
-            this.d = Math.abs(this.d)
-        }
+        /**
+         * @method evaluateSign
+         * @todo rewrite 
+         */
+        throw new Error('getModulus needs to be written')
+    }
+
+    toggleSign(){
+        /**
+         * @method toggleSign
+         * @todo rewrite 
+         */
+        throw new Error('toggleSign needs to be written')
     }
 
     toInteger(){
-        return this.sign() * Math.floor(this.n/this.d);
+        /**
+         * @method toInteger
+         * @todo rewrite 
+         */
+        throw new Error('toInteger needs to be written')
     }
 
     toFloat(){
-    /** 
-    * @note the sign() method cannot be used here because a decimal is required.
-    */
-    {
-        // Use the sign() method to determine the sign
-        const signMultiplier = this.sign();
-    
-        // Calculate the decimal value using the signMultiplier
-        return signMultiplier * (this.n / this.d);
-    }
-
-        
+        /**
+         * @method toFloat
+         * @todo rewrite 
+         */
+        throw new Error('toFloat needs to be written')
     }
 
     toString(){
-        let result;
+        let result
         
-        this.SIGN.positive 
+        this.sign.POSITIVE 
             ? result = `${this.n} / ${this.d}`
             : result = `- ${this.n} / ${this.d}`
 
-        return result;
+        return result
     }
 
     addF(fraction){
-        const modifierT = this.sign()
-        const modifierF = fraction.sign()
-        const sign = this.SIGN.positive === fraction.SIGN.positive;
-        let n,d;
-        
-        if(this.d != fraction.d){
-            n = modifierT*this.n*fraction.d + modifierF*fraction.n*this.d;
-            d = this.d*fraction.d;    
-        } else {
-            n = modifierT*this.n + modifierF*fraction.n;
-            d = this.d;
-        }
-
-        return new Fraction(n, d, sign)
+        /**
+         * @method addF
+         * @todo rewrite 
+         */
+        throw new Error('addF() needs to be written')
     }
 
     addI(integer){
@@ -142,16 +140,15 @@ module.exports = class Fraction {
     }
 
     subtractI(integer){
-        return this.addI(-1*integer);
+        return this.addI(-1*integer)
     }
 
     multiplyF(fraction){
-        const n = this.n * fraction.n;
-        const d = this.d * fraction.d;
-        const sign = this.SIGN.positive === fraction.SIGN.positive;
-        const result = new Fraction(n,d,sign)
-
-        return result;
+        /**
+         * @method multiplyF
+         * @todo rewrite 
+         */
+        throw new Error('multiplyF needs to be written')
     }
 
     multiplyI(integer){
@@ -167,54 +164,35 @@ module.exports = class Fraction {
     }
 
     duplicate(){
-        return new Fraction(this.n, this.d, this.SIGN.positive)
+        return new Fraction(this.n, this.d, this.sign.positive)
     }
 
-    sign(){
-        /** 
-        * @summary
-        *     Fraction.sign() returns a multiplier to adjust output methods.
-        */
-        if(this.SIGN.positive){
-            return 1;
-        } else {
-            return -1;
+    getSign(isInteger=true){
+        if(this.sign.POSITIVE && isInteger){
+            return 1
+        } else if (this.sign.NEGATIVE && isInteger){
+            return -1
+        }
+        if(this.sign.POSITIVE && !isInteger){
+            return 1.0
+        } else if (this.sign.NEGATIVE && !isInteger){
+            return -1.0
         }
     }
     
     verify(){
         if( this.n != 0 && this.d === 0 ){
             throw new TypeError('DivideByZero: denominator cannot be zero unless numerator is also zero.')
-        } else if( (this.SIGN.positive && this.SIGN.negative) || 
-                   (!this.SIGN.positive && !this.SIGN.negative)  ){
-            throw new Error('SignConflict: SIGN.postive must have the opposite value of SIGN.negative')
-        } else {
-            return true;
         }
     }
 
     reduce(){
-        const result = this.duplicate();
-        const factors = { up: 0, down: 0 }
-        let base = 0;
-        
-        result.setND(this.n, this.d)
-        
-        for( let i = 1 ; base < result.getD() || base < result.getN() ; i++){
-            base = 2**i;
-            factors.up = base + 1;
-            factors.down = base - 1;
-
-            if(result.d % factors.up === 0 && result.n % factors.up === 0){
-                result.setND( result.getN()/factors.up, result.getD()/factors.up )
-                i = 1;
-            } else if(result.d % factors.down === 0 && result.n % factors.down === 0){
-                result.setND( result.getN()/factors.down, result.getD()/factors.down )
-                i = 1;
-            }
-        }
-
-        return result;
+        /**
+         * @method reduce
+         * @todo
+         * rewrite
+         */
+        throw new Error('reduce() needs to be written')
     }
 }
 
@@ -223,6 +201,5 @@ module.exports = class Fraction {
  *   positive() returns true if integer is positive, false if negative.
  */
 function positive(integer){
-    return integer >= 0;
+    return integer >= 0
 }
-

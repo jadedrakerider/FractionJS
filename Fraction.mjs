@@ -1,14 +1,12 @@
 'use strict';
 import { Enum } from './libs/Enum/ENUM.mjs'
 
-
-
 export default class Fraction {
 
     constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
         this.d = 0;
-        this.SIGN = new Enum(['POSITIVE','NEGATIVE'])
+        this.SIGN = new Enum(['POSITIVE', 'NEGATIVE'])
         this.setND(intN, intD)
         
         if(!isPositive){
@@ -71,21 +69,23 @@ export default class Fraction {
     }
 
     /** 
-    * @summary 
-    *       evaluateSign() determines if the sign needs to be toggles and swaps SIGN ENUM.
+    * @summary evaluateSign() determines if the sign needs to be toggles and 
+    *     swaps SIGN enum.
     */
     evaluateSign(){
-        if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.positive) {
-            this.n = Math.abs(this.n)
-            this.d = Math.abs(this.d)
-            this.SIGN.select('negative')
-        } else if( ((this.n < 0 && this.d >= 0) || (this.n >= 0 && this.d < 0)) && this.SIGN.negative) {
-            this.n = Math.abs(this.n)
-            this.d = Math.abs(this.d)
-            this.SIGN.select('positive')
+        if ((this.n < 0 && this.d > 0) || (this.n >= 0 && this.d < 0)) {
+            if (this.SIGN.positive) {
+                this.n = Math.abs(this.n);
+                this.d = Math.abs(this.d);
+                this.SIGN.select('NEGATIVE');
+            } else if (this.SIGN.negative) {
+                this.n = Math.abs(this.n);
+                this.d = Math.abs(this.d);
+                this.SIGN.select('POSITIVE');
+            }
         } else {
-            this.n = Math.abs(this.n)
-            this.d = Math.abs(this.d)
+            this.n = Math.abs(this.n);
+            this.d = Math.abs(this.d);
         }
     }
 
@@ -97,15 +97,11 @@ export default class Fraction {
     /** 
     * @note the sign() method cannot be used here because a decimal is required.
     */
-    {
         // Use the sign() method to determine the sign
         const signMultiplier = this.sign();
     
         // Calculate the decimal value using the signMultiplier
         return signMultiplier * (this.n / this.d);
-    }
-
-        
     }
 
     toString(){
@@ -144,7 +140,7 @@ export default class Fraction {
     }
 
     subtractI(integer){
-        return th.addI(-1*integer);
+        return this.addI(-1*integer);
     }
 
     multiplyF(fraction){
@@ -187,9 +183,6 @@ export default class Fraction {
     verify(){
         if( this.n != 0 && this.d === 0 ){
             throw new TypeError('DivideByZero: denominator cannot be zero unless numerator is also zero.')
-        } else if( (this.SIGN.positive && this.SIGN.negative) || 
-                   (!this.SIGN.positive && !this.SIGN.negative)  ){
-            throw new Error('SignConflict: SIGN.postive must have the opposite value of SIGN.negative')
         } else {
             return true;
         }
