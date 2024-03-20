@@ -3,7 +3,7 @@ import ENUM from './libs/ENUMJS/ENUM.mjs'
 
 
 
-export default class Fraction {
+export class Fraction {
 
     constructor( intN=0, intD=0, isPositive=true ){
         this.n = 0;
@@ -226,3 +226,5 @@ export default class Fraction {
 function positive(integer){
     integer >= 0 ? true : false;
 }
+
+export { Fraction };
