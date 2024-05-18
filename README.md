@@ -2,6 +2,16 @@
 
 Welcome to and thank you for your interest in FractionJS.
 
+## Add As A Submodule
+
+The best way, by far, is to add this as a submodule.
+
+```
+git subomdule add https://github.com/jauntyjocularjay/Fractionjs fraction
+```
+
+will install the library into your root under fraction: `root/fraction`
+
 ## Why Fractions?
 
 Although decimals are the standard for computer science, Fractions can contain information that is lost due to rounding.
@@ -11,7 +21,3 @@ Although decimals are the standard for computer science, Fractions can contain i
 3/7 is not easily expressed as a decimal : 0.428571...
 
 Generally the information lost is negligible. However, for some mathematical operations (ex. using Radians) it is much preferable to preserve this information.
-
-## Download
-
-Download the [libs](https://github.com/GeorgeSchafer/FractionJS/blob/demo/libs/) folder and use as needed. These files are meant to be external libraries to be added to another project, so they are located in the libs folder.
