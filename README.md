@@ -10,7 +10,7 @@ Although decimals are the standard for computer science, Fractions can contain i
 
 3/7 is not easily expressed as a decimal : 0.428571...
 
-Generally the information lost is negligible. However, for some mathematical operations (ex. using Radians) it is much preferable to preserve this information.
+Generally the information lost is negligible. However, for some mathematical operations (ex. using Radians) it is much preferable to preserve this information and this arithmatic is faster.
 
 ## Download
 
