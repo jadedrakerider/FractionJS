@@ -4,6 +4,7 @@
     "description": "",
     "main": "fraction.mjs",
     "scripts": {
+        "dev": "npm i && git submodule update --init --recursive",
         "test": "clear && mocha test --exit"
     },
     "keywords": [],
