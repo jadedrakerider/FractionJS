@@ -1,205 +1,205 @@
-'use strict'
- 
-const { Enum } = require('./libs/Enum/ENUM.cjs')
+// 'use strict'
 
-module.exports = class Fraction {
+// const { Enum } = require('./libs/Enum/ENUM.cjs')
 
-    constructor( intN=0, intD=0 ){
-        this.n = 0
-        this.d = 0
-        this.sign = new Enum(['POSITIVE', 'NEGATIVE'])
-        this.setND(intN, intD)
-    }
+// module.exports = class Fraction {
 
-    getAdditiveInverse(){
-        /**
-         * @method getAdditiveInverse
-         * @todo rewrite
-         */
-        throw new Error('.getAdditiveInverse() needs to be written')
-    }
+//     constructor( intN=0, intD=0 ){
+//         this.n = 0
+//         this.d = 0
+//         this.sign = new Enum(['POSITIVE', 'NEGATIVE'])
+//         this.setND(intN, intD)
+//     }
 
-    getD(){
-        return this.d
-    }
+//     getAdditiveInverse(){
+//         /**
+//          * @method getAdditiveInverse
+//          * @todo rewrite
+//          */
+//         throw new Error('.getAdditiveInverse() needs to be written')
+//     }
 
-    getInverse(){
-        const result = this.duplicate()
-        
-        result.setND(this.d, this.n)
+//     getD(){
+//         return this.d
+//     }
 
-        return result
-    }
+//     getInverse(){
+//         const result = this.duplicate()
 
-    getModulus(){
-        /**
-         * @method getModulus
-         * @todo 
-         * Rewrite 
-         */
-        throw new Error('getModulus needs to be written')
-    }
+//         result.setND(this.d, this.n)
 
-    getSignedRemainder(){
-        /**
-         * @method getSignedRemainder
-         * @todo 
-         * Rewrite 
-         */
-        throw new Error('getModulus needs to be written')
-    }
+//         return result
+//     }
 
-    getN(){
-        return this.n
-    }
+//     getModulus(){
+//         /**
+//          * @method getModulus
+//          * @todo 
+//          * Rewrite 
+//          */
+//         throw new Error('getModulus needs to be written')
+//     }
 
-    setND( numerator, denominator){
-        /**
-         * @summary
-         *      setND() sets the numerator and denominator of a Fraction.
-         * @note
-         *      Must be in this order, otherwise will throw DivideByZero Error
-         *              this.setDenominator(denominator)
-         *              this.setNumerator(numerator)
-         */
-        // 
-        this.setDenominator(denominator)
-        this.setNumerator(numerator)
-        this.evaluateSign()
-    }
+//     getSignedRemainder(){
+//         /**
+//          * @method getSignedRemainder
+//          * @todo 
+//          * Rewrite 
+//          */
+//         throw new Error('getModulus needs to be written')
+//     }
 
-    setNumerator( numerator ){
-        this.n = numerator
-        this.verify()
-    }
+//     getN(){
+//         return this.n
+//     }
 
-    setDenominator( denominator ){
-        this.d = denominator
-    }
+//     setND( numerator, denominator){
+//         /**
+//          * @summary
+//          *      setND() sets the numerator and denominator of a Fraction.
+//          * @note
+//          *      Must be in this order, otherwise will throw DivideByZero Error
+//          *              this.setDenominator(denominator)
+//          *              this.setNumerator(numerator)
+//          */
+//         // 
+//         this.setDenominator(denominator)
+//         this.setNumerator(numerator)
+//         this.evaluateSign()
+//     }
 
-    /** 
-    * @summary evaluateSign() determines if the sign needs to be toggles and 
-    *     swaps SIGN enum.
-    */
-    evaluateSign(){
-        /**
-         * @method evaluateSign
-         * @todo rewrite 
-         */
-        throw new Error('getModulus needs to be written')
-    }
+//     setNumerator( numerator ){
+//         this.n = numerator
+//         this.verify()
+//     }
 
-    toggleSign(){
-        /**
-         * @method toggleSign
-         * @todo rewrite 
-         */
-        throw new Error('toggleSign needs to be written')
-    }
+//     setDenominator( denominator ){
+//         this.d = denominator
+//     }
 
-    toInteger(){
-        /**
-         * @method toInteger
-         * @todo rewrite 
-         */
-        throw new Error('toInteger needs to be written')
-    }
+//     /** 
+//     * @summary evaluateSign() determines if the sign needs to be toggles and 
+//     *     swaps SIGN enum.
+//     */
+//     evaluateSign(){
+//         /**
+//          * @method evaluateSign
+//          * @todo rewrite 
+//          */
+//         throw new Error('getModulus needs to be written')
+//     }
 
-    toFloat(){
-        /**
-         * @method toFloat
-         * @todo rewrite 
-         */
-        throw new Error('toFloat needs to be written')
-    }
+//     toggleSign(){
+//         /**
+//          * @method toggleSign
+//          * @todo rewrite 
+//          */
+//         throw new Error('toggleSign needs to be written')
+//     }
 
-    toString(){
-        let result
-        
-        this.sign.POSITIVE 
-            ? result = `${this.n} / ${this.d}`
-            : result = `- ${this.n} / ${this.d}`
+//     toInteger(){
+//         /**
+//          * @method toInteger
+//          * @todo rewrite 
+//          */
+//         throw new Error('toInteger needs to be written')
+//     }
 
-        return result
-    }
+//     toFloat(){
+//         /**
+//          * @method toFloat
+//          * @todo rewrite 
+//          */
+//         throw new Error('toFloat needs to be written')
+//     }
 
-    addF(fraction){
-        /**
-         * @method addF
-         * @todo rewrite 
-         */
-        throw new Error('addF() needs to be written')
-    }
+//     toString(){
+//         let result
 
-    addI(integer){
-        return this.addF(new Fraction(integer, 1 , positive(integer)))
-    }
+//         this.sign.POSITIVE 
+//             ? result = `${this.n} / ${this.d}`
+//             : result = `- ${this.n} / ${this.d}`
 
-    subtractF(fraction){
-        return this.addF(fraction.getAdditiveInverse())
-    }
+//         return result
+//     }
 
-    subtractI(integer){
-        return this.addI(-1*integer)
-    }
+//     addF(fraction){
+//         /**
+//          * @method addF
+//          * @todo rewrite 
+//          */
+//         throw new Error('addF() needs to be written')
+//     }
 
-    multiplyF(fraction){
-        /**
-         * @method multiplyF
-         * @todo rewrite 
-         */
-        throw new Error('multiplyF needs to be written')
-    }
+//     addI(integer){
+//         return this.addF(new Fraction(integer, 1 , positive(integer)))
+//     }
 
-    multiplyI(integer){
-        return this.multiplyF(new Fraction(integer, 1, positive(integer)))
-    }
+//     subtractF(fraction){
+//         return this.addF(fraction.getAdditiveInverse())
+//     }
 
-    divideF(fraction){
-        return this.multiplyF(fraction.getInverse())
-    }
+//     subtractI(integer){
+//         return this.addI(-1*integer)
+//     }
 
-    divideI(integer){
-        return this.multiplyF(new Fraction(1, integer, positive(integer)))        
-    }
+//     multiplyF(fraction){
+//         /**
+//          * @method multiplyF
+//          * @todo rewrite 
+//          */
+//         throw new Error('multiplyF needs to be written')
+//     }
 
-    duplicate(){
-        return new Fraction(this.n, this.d, this.sign.positive)
-    }
+//     multiplyI(integer){
+//         return this.multiplyF(new Fraction(integer, 1, positive(integer)))
+//     }
 
-    getSign(isInteger=true){
-        if(this.sign.POSITIVE && isInteger){
-            return 1
-        } else if (this.sign.NEGATIVE && isInteger){
-            return -1
-        }
-        if(this.sign.POSITIVE && !isInteger){
-            return 1.0
-        } else if (this.sign.NEGATIVE && !isInteger){
-            return -1.0
-        }
-    }
-    
-    verify(){
-        if( this.n != 0 && this.d === 0 ){
-            throw new TypeError('DivideByZero: denominator cannot be zero unless numerator is also zero.')
-        }
-    }
+//     divideF(fraction){
+//         return this.multiplyF(fraction.getInverse())
+//     }
 
-    reduce(){
-        /**
-         * @method reduce
-         * @todo
-         * rewrite
-         */
-        throw new Error('reduce() needs to be written')
-    }
-}
+//     divideI(integer){
+//         return this.multiplyF(new Fraction(1, integer, positive(integer)))        
+//     }
 
-/**
- * @summary 
- *   positive() returns true if integer is positive, false if negative.
- */
-function positive(integer){
-    return integer >= 0
-}
+//     duplicate(){
+//         return new Fraction(this.n, this.d, this.sign.positive)
+//     }
+
+//     getSign(isInteger=true){
+//         if(this.sign.POSITIVE && isInteger){
+//             return 1
+//         } else if (this.sign.NEGATIVE && isInteger){
+//             return -1
+//         }
+//         if(this.sign.POSITIVE && !isInteger){
+//             return 1.0
+//         } else if (this.sign.NEGATIVE && !isInteger){
+//             return -1.0
+//         }
+//     }
+
+//     verify(){
+//         if( this.n != 0 && this.d === 0 ){
+//             throw new TypeError('DivideByZero: denominator cannot be zero unless numerator is also zero.')
+//         }
+//     }
+
+//     reduce(){
+//         /**
+//          * @method reduce
+//          * @todo
+//          * rewrite
+//          */
+//         throw new Error('reduce() needs to be written')
+//     }
+// }
+
+// /**
+//  * @summary 
+//  *   positive() returns true if integer is positive, false if negative.
+//  */
+// function positive(integer){
+//     return integer >= 0
+// }

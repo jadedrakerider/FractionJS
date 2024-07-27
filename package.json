@@ -1,14 +1,14 @@
 {
-    "name": "nodejs",
+    "name": "fractionjs",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "fraction.mjs",
     "scripts": {
-        "test": "mocha"
+        "test": "clear && mocha test --exit"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "jauntyjocularjay",
+    "license": "MIT",
     "dependencies": {
         "@types/node": "^18.0.6",
         "node-fetch": "^3.2.6"

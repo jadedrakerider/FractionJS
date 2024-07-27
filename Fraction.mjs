@@ -10,6 +10,7 @@ export default class Fraction {
         this.n = 0;
         this.d = 0;
         this.SIGN = new Enum(['POSITIVE', 'NEGATIVE'])
+        console.log('SIGN:', this.SIGN)
         this.setND(intN, intD)
 
         if (!isPositive) {
@@ -135,7 +136,7 @@ export default class Fraction {
     }
 
     addI(integer) {
-        return this.addF(new Fraction(integer, 1, positive(integer)))
+        return this.addF(new Fraction(integer, 1, Fraction.positive(integer)))
     }
 
     subtractF(fraction) {
@@ -156,7 +157,7 @@ export default class Fraction {
     }
 
     multiplyI(integer) {
-        return this.multiplyF(new Fraction(integer, 1, positive(integer)))
+        return this.multiplyF(new Fraction(integer, 1, Fraction.positive(integer)))
     }
 
     divideF(fraction) {
@@ -164,7 +165,7 @@ export default class Fraction {
     }
 
     divideI(integer) {
-        return this.multiplyF(new Fraction(1, integer, positive(integer)))
+        return this.multiplyF(new Fraction(1, integer, Fraction.positive(integer)))
     }
 
     duplicate() {
@@ -216,10 +217,4 @@ export default class Fraction {
     }
 }
 
-/**
- * @summary 
- *   positive() returns true if integer is positive, false if negative.
- */
-function positive(integer) {
-    return integer >= 0;
-}
+
