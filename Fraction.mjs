@@ -1,8 +1,7 @@
-'use strict';
 import { Enum } from './module/enum/ENUM.mjs'
 
-export default class Fraction {
-    static positive(integer) {
+class Fraction {
+    static isPositive(integer) {
         return integer >= 0;
     }
 
@@ -10,7 +9,6 @@ export default class Fraction {
         this.n = 0;
         this.d = 0;
         this.SIGN = new Enum(['POSITIVE', 'NEGATIVE'])
-        console.log('SIGN:', this.SIGN)
         this.setND(intN, intD)
 
         if (!isPositive) {
@@ -19,7 +17,7 @@ export default class Fraction {
     }
 
     getAdditiveInverse() {
-        const result = this.duplicate();
+        const result = this.duplicate()
 
         result.SIGN.positive = !result.SIGN.positive;
         result.SIGN.negative = !result.SIGN.negative;
@@ -32,7 +30,7 @@ export default class Fraction {
     }
 
     getInverse() {
-        const result = this.duplicate();
+        const result = this.duplicate()
 
         result.setND(this.d, this.n)
 
@@ -40,23 +38,23 @@ export default class Fraction {
     }
 
     getSignedRemainder() {
-        return this.sign() * (this.n % this.d);
+        return this.sign() * (this.n % this.d)
     }
 
     getN() {
         return this.n;
     }
 
+    /** @todo Debug */
     setND(numerator, denominator) {
-        /**
-         * @summary
-         *      setND() sets the numerator and denominator of a Fraction.
-         * @note
-         *      Must be in this order, otherwise will throw DivideByZero Error
-         *              this.setDenominator(denominator)
-         *              this.setNumerator(numerator)
-         */
-        // 
+    /**
+     * @summary
+     *      setND() sets the numerator and denominator of a Fraction.
+     * @note
+     *      Must be in this order, otherwise will throw DivideByZero Error:
+     *      this.setDenominator(denominator)
+     *      this.setNumerator(numerator)
+     */
         this.setDenominator(denominator)
         this.setNumerator(numerator)
         this.evaluateSign()
@@ -69,32 +67,39 @@ export default class Fraction {
 
     setDenominator(denominator) {
         this.d = denominator;
-        this.verify();
+        this.verify()
     }
 
+    getModulus() {
+    /**
+     * @return {number} is the modulus of the fraction.
+     * @note the Modulus is ALWAYS positive.
+     */
+        return this.n % this.d
+    }
+
+    /** @todo debug */
+    evaluateSign() {
     /** 
     * @summary evaluateSign() determines if the sign needs to be toggles and 
     *     swaps SIGN enum.
     */
-    evaluateSign() {
-        if ((this.n < 0 && this.d > 0) || (this.n >= 0 && this.d < 0)) {
-            if (this.SIGN.positive) {
-                this.n = Math.abs(this.n);
-                this.d = Math.abs(this.d);
-                this.SIGN.select('NEGATIVE');
-            } else if (this.SIGN.negative) {
-                this.n = Math.abs(this.n);
-                this.d = Math.abs(this.d);
-                this.SIGN.select('POSITIVE');
-            }
+        if ((this.n < 0 && this.d > 0) || (this.n >= 0 && this.d < 0) && this.SIGN.v() === 'POSITIVE') {
+                this.n = Math.abs(this.n)
+                this.d = Math.abs(this.d)
+                this.SIGN.select('NEGATIVE')
+        } else if ((this.n < 0 && this.d > 0) || (this.n >= 0 && this.d < 0) && this.SIGN.v() === 'NEGATIVE') {
+                this.n = Math.abs(this.n)
+                this.d = Math.abs(this.d)
+                this.SIGN.select('POSITIVE')
         } else {
-            this.n = Math.abs(this.n);
-            this.d = Math.abs(this.d);
+            this.n = Math.abs(this.n)
+            this.d = Math.abs(this.d)
         }
     }
 
     toInteger() {
-        return this.sign() * Math.floor(this.n / this.d);
+        return this.sign() * Math.floor(this.n / this.d)
     }
 
     toFloat() {
@@ -102,16 +107,16 @@ export default class Fraction {
         * @note the sign() method cannot be used here because a decimal is required.
         */
         // Use the sign() method to determine the sign
-        const signMultiplier = this.sign();
+        const signMultiplier = this.sign()
 
         // Calculate the decimal value using the signMultiplier
-        return signMultiplier * (this.n / this.d);
+        return signMultiplier * (this.n / this.d)
     }
 
     toString() {
         let result;
 
-        this.SIGN.positive
+        this.SIGN.v() === 'POSITIVE'
             ? result = `${this.n} / ${this.d}`
             : result = `- ${this.n} / ${this.d}`
 
@@ -136,7 +141,7 @@ export default class Fraction {
     }
 
     addI(integer) {
-        return this.addF(new Fraction(integer, 1, Fraction.positive(integer)))
+        return this.addF(new Fraction(integer, 1, Fraction.isPositive(integer)))
     }
 
     subtractF(fraction) {
@@ -144,20 +149,20 @@ export default class Fraction {
     }
 
     subtractI(integer) {
-        return this.addI(-1 * integer);
+        return this.addI(-1 * integer)
     }
 
     multiplyF(fraction) {
-        const n = this.n * fraction.n;
-        const d = this.d * fraction.d;
-        const sign = this.SIGN.positive === fraction.SIGN.positive;
+        const n = this.n * fraction.n
+        const d = this.d * fraction.d
+        const sign = (this.SIGN.v() === "POSITIVE") === (fraction.SIGN.v() === 'POSITIVE')
         const result = new Fraction(n, d, sign)
 
-        return result;
+        return result
     }
 
     multiplyI(integer) {
-        return this.multiplyF(new Fraction(integer, 1, Fraction.positive(integer)))
+        return this.multiplyF(new Fraction(integer, 1, Fraction.isPositive(integer)))
     }
 
     divideF(fraction) {
@@ -165,7 +170,7 @@ export default class Fraction {
     }
 
     divideI(integer) {
-        return this.multiplyF(new Fraction(1, integer, Fraction.positive(integer)))
+        return this.multiplyF(new Fraction(1, integer, Fraction.isPositive(integer)))
     }
 
     duplicate() {
@@ -177,7 +182,7 @@ export default class Fraction {
         * @summary
         *     Fraction.sign() returns a multiplier to adjust output methods.
         */
-        if (this.SIGN.positive) {
+        if (this.SIGN.v() === 'POSITIVE') {
             return 1;
         } else {
             return -1;
@@ -193,7 +198,7 @@ export default class Fraction {
     }
 
     reduce() {
-        const result = this.duplicate();
+        const result = this.duplicate()
         const factors = { up: 0, down: 0 }
         let base = 0;
 
@@ -217,4 +222,4 @@ export default class Fraction {
     }
 }
 
-
+export { Fraction }
