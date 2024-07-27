@@ -14,4 +14,6 @@ Generally the information lost is negligible. However, for some mathematical ope
 
 ## Download
 
-Download the [libs](https://github.com/GeorgeSchafer/FractionJS/blob/demo/libs/) folder and use as needed. These files are meant to be external libraries to be added to another project, so they are located in the libs folder.
+```
+git submodule add https://github.com/jauntyjocularjay/fractionjs.git desired/path
+```
